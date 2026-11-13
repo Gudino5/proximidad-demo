@@ -1,4 +1,4 @@
-import { useProximity } from 'expo-proximity';
+import { useProximity } from "expo-proximity";
 
 export function useProximidad() {
   const { proximityState } = useProximity();

@@ -1,13 +1,24 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNotaVozViewModel } from '../viewmodels/useNotaVozViewModel';
+import { View, Text, Button, StyleSheet } from "react-native";
+import { useNotaVozViewModel } from "../viewmodels/useNotaVozViewModel";
 
 export default function NotaVozScreen() {
-  const { cerca, disponible, verificarSensor, reproducir, pausar } = useNotaVozViewModel();
+  const {
+    cerca,
+    disponible,
+    verificarSensor,
+    reproducir,
+    pausar,
+    cargado,
+    duracion,
+  } = useNotaVozViewModel();
 
   if (disponible === false) {
     return (
       <View style={styles.contenedor}>
-        <Text style={styles.titulo}>Este dispositivo no tiene sensor de proximidad.</Text>
+        <Text style={styles.titulo}>
+          Este dispositivo no tiene sensor de proximidad.
+        </Text>
+        <Text>cargado: {String(cargado)} · duración: {duracion}</Text>
         <Button title="Reintentar" onPress={verificarSensor} />
       </View>
     );
@@ -23,7 +34,7 @@ export default function NotaVozScreen() {
   );
 }
 const styles = StyleSheet.create({
-  contenedor: { flex: 1, justifyContent: 'center', padding: 24, gap: 12 },
-  titulo: { fontSize: 22, textAlign: 'center' },
-overlay: { ...StyleSheet.absoluteFill, backgroundColor: '#000' },
+  contenedor: { flex: 1, justifyContent: "center", padding: 24, gap: 12 },
+  titulo: { fontSize: 22, textAlign: "center" },
+  overlay: { ...StyleSheet.absoluteFill, backgroundColor: "#000" },
 });
